@@ -1,4 +1,4 @@
-from parser import Parser
+from valut4ik_bot.parser import Parser
 
 
 class Converter:
@@ -20,10 +20,10 @@ class Converter:
         return 1.0 / self.exchange_rate
 
     def rub_to_kgs(self, rubles):
-        return round(rubles * self.one_rub_in_kgs(), 2)
+        return round(rubles * self.one_rub_in_kgs(), 3)
 
     def kgs_to_rub(self, soms):
-        return round(soms * self.one_kgs_in_rub(), 2)
+        return round(soms * self.one_kgs_in_rub(), 3)
 
 
 if __name__ == '__main__':
