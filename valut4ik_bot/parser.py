@@ -1,14 +1,12 @@
 import os
 import requests
-
-
-API_KEY = os.environ['EXCHANGE_RATE_API_KEY']
+from config import CONVERTER_API_TOKEN
 
 
 class Parser:
 
     def __init__(self):
-        self.base_url = f'https://v6.exchangerate-api.com/v6/{API_KEY}/pair'
+        self.base_url = f'https://v6.exchangerate-api.com/v6/{CONVERTER_API_TOKEN}/pair'
 
     def get_exchange_rate(self, src, dst):
         url = f'{self.base_url}/{src.upper()}/{dst.upper()}'
