@@ -3,7 +3,8 @@ from valut4ik_bot.parser import Parser
 
 class Converter:
 
-    exchange_rate = None
+    rub_accuracy = 2  # one ruble is a hundred kopecks
+    kgs_accuracy = 2  # one som is a hundred tyiyns
 
     def __init__(self):
         if not self.exchange_rate:
@@ -20,10 +21,10 @@ class Converter:
         return 1.0 / self.exchange_rate
 
     def rub_to_kgs(self, rubles):
-        return round(rubles * self.one_rub_in_kgs(), 3)
+        return round(rubles * self.one_rub_in_kgs(), self.kgs_accuracy)
 
     def kgs_to_rub(self, soms):
-        return round(soms * self.one_kgs_in_rub(), 3)
+        return round(soms * self.one_kgs_in_rub(), self.rub_accuracy)
 
 
 if __name__ == '__main__':

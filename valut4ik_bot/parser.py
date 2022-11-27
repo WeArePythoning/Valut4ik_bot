@@ -1,12 +1,14 @@
 import os
 import requests
+
 from config import CONVERTER_API_TOKEN
 
 
 class Parser:
 
     def __init__(self):
-        self.base_url = f'https://v6.exchangerate-api.com/v6/{CONVERTER_API_TOKEN}/pair'
+        self.base_url = ('https://v6.exchangerate-api.com/v6/'
+                f'{CONVERTER_API_TOKEN}/pair')
 
     def get_exchange_rate(self, src, dst):
         url = f'{self.base_url}/{src.upper()}/{dst.upper()}'
