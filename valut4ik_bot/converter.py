@@ -1,4 +1,4 @@
-from valut4ik_bot.parser import Parser
+import valut4ik_bot.parser as parser
 
 
 class Converter:
@@ -7,9 +7,11 @@ class Converter:
     kgs_accuracy = 2  # one som is a hundred tyiyns
 
     def __init__(self):
-        if not self.exchange_rate:
-            rate = Parser().get_exchange_rate('RUB', 'KGS')
-            self._set_exchange_rate(rate)
+        try:
+            rate = parser.Parser().get_exchange_rate('RUB', 'KGS')
+        except parser.ParseError:
+            raise ConversionError
+        self._set_exchange_rate(rate)
 
     def _set_exchange_rate(self, new_rate):
         self.exchange_rate = new_rate
@@ -25,6 +27,10 @@ class Converter:
 
     def kgs_to_rub(self, soms):
         return round(soms * self.one_kgs_in_rub(), self.rub_accuracy)
+
+
+class ConversionError(Exception):
+    pass
 
 
 if __name__ == '__main__':

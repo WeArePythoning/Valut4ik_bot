@@ -19,9 +19,9 @@ def start(message):
             one_time_keyboard=False
             )
     markup.add(
-            types.KeyboardButton(RUB_SOM_BTNTXT)
-            types.KeyboardButton(SOM_RUB_BTNTXT)
-            types.KeyboardButton(ASK_RATE_BTNTXT)
+            types.KeyboardButton(RUB_SOM_BTNTXT),
+            types.KeyboardButton(SOM_RUB_BTNTXT),
+            types.KeyboardButton(ASK_RATE_BTNTXT),
             )
     bot.send_message(message.chat.id, greet, reply_markup=markup)
 
@@ -46,7 +46,7 @@ def rub_to_som(message):
         amount = float(message.text)
         converted_amount = converter.rub_to_kgs(amount)
         bot.reply_to(message, converted_amount)
-    except Exception as e:
+    except converter.ConversionError:
         bot.reply_to(message, 'Чё-то не смог посчтитать...')
 
 
@@ -55,7 +55,7 @@ def som_to_rub(message):
         amount = float(message.text)
         converted_amount = converter.kgs_to_rub(amount)
         bot.reply_to(message, converted_amount)
-    except Exception as e:
+    except converter.ConversionError:
         bot.reply_to(message, 'Чё-то не смог посчтитать...')
 
 
