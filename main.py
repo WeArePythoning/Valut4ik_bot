@@ -1,7 +1,7 @@
-import telebot
-from telebot import types
-
-import valut4ik_bot.converter as converter
+import telebot # импорт библиотеки
+from telebot import types #можно это не писать, но придется везде писать перед types 'telebot.'
+   # пустая строка отделяет стандартные библиотеки от пользовательских
+import valut4ik_bot.converter as converter #мы в корневой папке, импортируем converter из папки valut4ik_bot, точка значит, что мы идем внутрь
 from config import BOT_TOKEN
 from resources import *
 

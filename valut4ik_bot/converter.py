@@ -1,4 +1,4 @@
-import valut4ik_bot.parser as parser
+import valut4ik_bot.parser as parser # импортируем модуль, в котором описан класс Parser и описаны его методы
 
 
 class Converter:
@@ -8,12 +8,13 @@ class Converter:
 
     def __init__(self):
         try:
-            rate = parser.Parser().get_exchange_rate('RUB', 'KGS')
-        except parser.ParseError:
-            raise ConversionError
-        self._set_exchange_rate(rate)
+            rate = parser.Parser().get_exchange_rate('RUB', 'KGS') # parser.Parser() - создание объекта класса Parser, и вызываем ему его метод get_exchange_rate, который описан в parser.py, курс сохраняем в переменную rate
+        except parser.ParseError: # если произошла ошибка ParseError, описанная в модуле parser
+            raise ConversionError # просто переназвали ошибку для модуля конвертации
+        self._set_exchange_rate(rate) # вызываем метод _set_exchange_rate, который описан ниже
+        #self.exchange_rate = rate # exchange_rate - переменная объекта класса Converter, которой мы присвоили значение rate, чтобы его не утратить (а то оно существует только пока выполняется метод __init__
 
-    def _set_exchange_rate(self, new_rate):
+    def _set_exchange_rate(self, new_rate): # '_' в начале названия метода означает, что в main.py его не следует использовать. Мы передали туда аргумент - обдумать это!
         self.exchange_rate = new_rate
 
     def one_rub_in_kgs(self):
