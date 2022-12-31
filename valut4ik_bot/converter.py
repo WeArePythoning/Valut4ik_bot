@@ -1,4 +1,4 @@
-import valut4ik_bot.parser as parser
+from . import parser
 
 
 class Converter:
